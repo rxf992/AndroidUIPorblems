@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Region;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -36,10 +37,54 @@ public class OverDrawView extends View {
         mPaint.setStyle(Paint.Style.FILL);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    void clipDraw(Canvas canvas)
+    {
+        //FIXME: how to make this function as the same result of CustomNoOverlapDraw()?
+        int width = getWidth();
+        int height = getHeight();
 
+        mPaint.setColor(Color.GRAY);
+        canvas.drawRect(0, 0, width, height, mPaint);
+        canvas.save();
+
+        canvas.clipRect(0, height / 4, width, height, Region.Op.INTERSECT);
+        mPaint.setColor(Color.CYAN);
+        canvas.drawRect(0, height / 4, width, height, mPaint);
+        canvas.restore();
+
+        canvas.save();
+        canvas.clipRect(0, height / 3, width, height, Region.Op.INTERSECT);
+        mPaint.setColor(Color.DKGRAY);
+        canvas.drawRect(0, height / 3, width, height, mPaint);
+        canvas.restore();
+
+        canvas.save();
+        canvas.clipRect(0, height/2, width, height, Region.Op.INTERSECT);
+        mPaint.setColor(Color.LTGRAY);
+        canvas.drawRect(0, height/2, width, height, mPaint);
+        canvas.restore();
+    }
+
+    void CustomNoOverlapAreaDraw(Canvas canvas)
+    {
+        int width = getWidth();
+        int height = getHeight();
+
+        mPaint.setColor(Color.GRAY);
+        canvas.drawRect(0, 0, width, height/4, mPaint);
+
+        mPaint.setColor(Color.CYAN);
+        canvas.drawRect(0, height / 4, width, height/3, mPaint);
+
+        mPaint.setColor(Color.DKGRAY);
+        canvas.drawRect(0, height / 3, width, height/2, mPaint);
+
+        mPaint.setColor(Color.LTGRAY);
+        canvas.drawRect(0, height / 2, width, height, mPaint);
+    }
+
+    void originalDraw(Canvas canvas)
+    {
         int width = getWidth();
         int height = getHeight();
 
@@ -47,12 +92,21 @@ public class OverDrawView extends View {
         canvas.drawRect(0, 0, width, height, mPaint);
 
         mPaint.setColor(Color.CYAN);
-        canvas.drawRect(0, height/4, width, height, mPaint);
+        canvas.drawRect(0, height / 4, width, height, mPaint);
 
         mPaint.setColor(Color.DKGRAY);
-        canvas.drawRect(0, height/3, width, height, mPaint);
+        canvas.drawRect(0, height / 3, width, height, mPaint);
 
         mPaint.setColor(Color.LTGRAY);
-        canvas.drawRect(0, height/2, width, height, mPaint);
+        canvas.drawRect(0, height / 2, width, height, mPaint);
+    }
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+//        originalDraw(canvas);
+        //clipDraw(canvas);
+        CustomNoOverlapAreaDraw(canvas);
+
+
     }
 }

@@ -9,5 +9,6 @@ public class OverDrawViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_over_draw_view);
+        getWindow().setBackgroundDrawable(null);
     }
 }

@@ -11,6 +11,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setBackgroundDrawable(null);//diable background draw
+
         setContentView(R.layout.activity_main);
 
         Button showOverDraw = (Button) findViewById(R.id.btn_show_overdraw);

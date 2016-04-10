@@ -9,5 +9,6 @@ public class BusyOnDrawViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busy_on_draw_view);
+        getWindow().setBackgroundDrawable(null);
     }
 }

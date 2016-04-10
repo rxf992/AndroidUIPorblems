@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidUIProblems.iml" filepath="$PROJECT_DIR$/AndroidUIProblems.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidUIPorblems.iml" filepath="$PROJECT_DIR$/AndroidUIPorblems.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
