@@ -39,7 +39,7 @@ public class OverDrawView extends View {
 
     void clipDraw(Canvas canvas)
     {
-        //FIXME: how to make this function as the same result of CustomNoOverlapDraw()?
+        //http://book.51cto.com/art/201204/328281.htm
         int width = getWidth();
         int height = getHeight();
         canvas.save();
@@ -59,7 +59,7 @@ public class OverDrawView extends View {
         mPaint.setColor(Color.DKGRAY);
         canvas.drawRect(0, height / 3, width, height, mPaint);
         canvas.restore();
-        
+
         canvas.save();
         canvas.clipRect(0, height / 2, width, height);
         mPaint.setColor(Color.LTGRAY);
