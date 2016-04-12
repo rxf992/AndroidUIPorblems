@@ -42,24 +42,26 @@ public class OverDrawView extends View {
         //FIXME: how to make this function as the same result of CustomNoOverlapDraw()?
         int width = getWidth();
         int height = getHeight();
-
-        mPaint.setColor(Color.GRAY);
-        canvas.drawRect(0, 0, width, height, mPaint);
         canvas.save();
+        mPaint.setColor(Color.GRAY);
+        canvas.clipRect(0, 0, width, height / 4);
+        canvas.drawRect(0, 0, width, height, mPaint);
+        canvas.restore();
 
-        canvas.clipRect(0, height / 4, width, height, Region.Op.INTERSECT);
+        canvas.save();
+        canvas.clipRect(0, height / 4, width, height / 3);
         mPaint.setColor(Color.CYAN);
         canvas.drawRect(0, height / 4, width, height, mPaint);
         canvas.restore();
 
         canvas.save();
-        canvas.clipRect(0, height / 3, width, height, Region.Op.INTERSECT);
+        canvas.clipRect(0, height / 3, width, height / 2);
         mPaint.setColor(Color.DKGRAY);
         canvas.drawRect(0, height / 3, width, height, mPaint);
         canvas.restore();
-
+        
         canvas.save();
-        canvas.clipRect(0, height/2, width, height, Region.Op.INTERSECT);
+        canvas.clipRect(0, height / 2, width, height);
         mPaint.setColor(Color.LTGRAY);
         canvas.drawRect(0, height/2, width, height, mPaint);
         canvas.restore();
@@ -104,8 +106,8 @@ public class OverDrawView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 //        originalDraw(canvas);
-        //clipDraw(canvas);
-        CustomNoOverlapAreaDraw(canvas);
+        clipDraw(canvas);
+//        CustomNoOverlapAreaDraw(canvas);
 
 
     }
